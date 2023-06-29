@@ -5,6 +5,7 @@ import { Footer } from './Footer';
 import { EditProfilePopup } from "./EditProfilePopup";
 import { AddPlacePopup } from "./AddPlacePopup";
 import { EditAvatarPopup } from "./EditAvatarPopup";
+import { ImagePopup } from "./ImagePopup";
 
 
 function App() {
@@ -13,12 +14,23 @@ function App() {
 	const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] =
 	React.useState(false);
 	const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-		React.useState(false);
+	React.useState(false);
+	const [isImagePopupOpen, setIsImagePopupOpen] =
+	React.useState(false);
+	const [selectedCard, setSelectedCard] =
+	React.useState({})
 
+	const handleCardClick = (card) => {
+		setSelectedCard(card);
+		setIsImagePopupOpen(true)
+	}
+	
 	const closeAllPopups = () => {
 		setIsEditProfilePopupOpen(false);
 		setIsAddPlacePopupOpen(false);
 		setIsEditAvatarPopupOpen(false);
+		setIsImagePopupOpen(false);
+		setSelectedCard({});
 	}
 
 	return (
@@ -31,6 +43,7 @@ function App() {
 						onEditProfile={setIsEditProfilePopupOpen}
 						onAddPlace={setIsAddPlacePopupOpen}
 						onEditAvatar={setIsEditAvatarPopupOpen}
+						onCardClick={handleCardClick}
 					/>
 
 					<Footer />
@@ -53,8 +66,15 @@ function App() {
 						onClose={closeAllPopups}
 					/>
 
+					{/****PopupImage****/}
+					<ImagePopup
+						card={selectedCard}
+						isOpen={isImagePopupOpen}
+						onClose={closeAllPopups}
+					>
+					</ImagePopup>
 
-					<div class="popup popup_type_delete">
+					{/*<div class="popup popup_type_delete">
 						<div class="popup__container">
 							<button aria-label="Закрыть" type="button"
 								class="popup__close-button"></button>
@@ -63,23 +83,8 @@ function App() {
 								<button type="submit" class="popup__submit-button popup__submit-button_type_delete">Да</button>
 							</form>
 						</div>
-					</div>
+					</div>*/}
 				</div>
-
-				<template class="template-cards">
-					<li class="card">
-						<img src="#" alt="#" class="card__image" />
-						<div class="card__name">
-							<h2 class="card__title"></h2>
-							<div class="card__like-container">
-								<button aria-label="Мне нравтся" type="button" class="card__button_like"></button>
-								<p class="card__like-counter">0</p>
-							</div>
-						</div>
-						<button aria-label="Удалить" type="button" class="card__button_delete"></button>
-					</li>
-				</template>
-
 			</div>
 		</div >
 	);
