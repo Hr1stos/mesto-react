@@ -10,7 +10,14 @@ export const EditAvatarPopup = (props) => {
 			isOpen={props.isOpen}
 			onClose={props.onClose}
 		>
-			<input type="url" id="avatar" name="avatar" placeholder="Ссылка на аватар" class="popup__input" required />
+			<input
+			type="url"
+			id="avatar"
+			name="avatar"
+			placeholder="Ссылка на аватар"
+			class="popup__input"
+			required
+			/>
 			<span id="error-avatar" class="popup__error"></span>
 		</PopupWithForm>
 	)

@@ -5,7 +5,7 @@ import { Card } from './Card';
 export const Main = (props) => {
 	const [userName, setUserName] = React.useState('');
 	const [userDescription, setUserDescription] = React.useState('');
-	const [userAvatar, setUserAvatar] = React.useState();
+	const [userAvatar, setUserAvatar] = React.useState('');
 	const [cards, setCards] = React.useState([]);
 
 	React.useEffect(() =>{
@@ -19,7 +19,7 @@ export const Main = (props) => {
 			.catch((err) => {
 				console.log(`Promise.all - ошибка: ${err}`);
 			});
-	})
+	}, [])
 
 	return (
 		<main className="content">
@@ -30,11 +30,17 @@ export const Main = (props) => {
 				className="profile__avatar-edit-button"
 				onClick={props.onEditAvatar}
 				>
-					<img src={userAvatar} alt="Аватар" className="profile__avatar" />
+					<img
+					src={userAvatar}
+					alt="Аватар"
+					className="profile__avatar"
+					/>
 				</button>
 				<div className="profile__info">
 					<div className="profile__container">
-						<h1 className="profile__name">{userName}</h1>
+						<h1 className="profile__name">
+							{userName}
+						</h1>
 						<button
 						aria-label="Редактироване"
 						type="button"
@@ -43,7 +49,9 @@ export const Main = (props) => {
 						>
 						</button>
 					</div>
-					<p className="profile__opsane">{userDescription}</p>
+					<p className="profile__opsane">
+						{userDescription}
+					</p>
 				</div>
 				<button
 				aria-label="Добавление"

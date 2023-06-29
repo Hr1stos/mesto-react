@@ -16,7 +16,9 @@ export const ImagePopup = (props) => {
 				alt={props.card.name}
 				className="popup__img"
 				/>
-				<figcaption className="popup__caption">{props.card.name}</figcaption>
+				<figcaption className="popup__caption">
+					{props.card.name}
+				</figcaption>
 			</figure>
 		</div>
 	)
