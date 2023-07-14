@@ -1,10 +1,27 @@
+import { useEffect } from 'react'
+
 export const ImagePopup = ({ card, isOpen, onClose }) => {
+	useEffect(() => {
+		if (!isOpen) return
+
+		function handleESC(e) {
+			if (e.key === 'Escape') {
+				onClose()
+			}
+		}
+
+		document.addEventListener('keydown', handleESC)
+
+		return () => document.removeEventListener('keydown', handleESC)
+	}, [isOpen, onClose])
+
 	return (
 		<div
 			className={`popup popup_type_image
 		${isOpen ? "popup_opened" : ""}`}
+			onClick={onClose}
 		>
-			<figure className="popup__container-image">
+			<figure className="popup__container-image" onClick={(e) => e.stopPropagation()}>
 				<button
 					aria-label="Закрыть"
 					type="button"

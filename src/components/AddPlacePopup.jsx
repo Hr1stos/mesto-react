@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { PopupWithForm } from "./PopupWithForm";
 
-export const AddPlacePopup = ({ isOpen, onClose, onAddPlace }) => {
+export const AddPlacePopup = ({ isOpen, onClose, onAddPlace, isLoad }) => {
 	const nameInputRef = useRef();
 	const linkInputRef = useRef();
 
@@ -23,7 +23,7 @@ export const AddPlacePopup = ({ isOpen, onClose, onAddPlace }) => {
 		<PopupWithForm
 			name="add"
 			title="Новое место"
-			buttonText="Создать"
+			buttonText={isLoad ? 'Создание...' : 'Создать'}
 			isOpen={isOpen}
 			onClose={onClose}
 			onSubmit={handleSubmit}
