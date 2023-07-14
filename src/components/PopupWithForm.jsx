@@ -1,29 +1,30 @@
-export const PopupWithForm = (props) => {
+export const PopupWithForm = ({ name, title, form, children, buttonText, isOpen, onClose, onSubmit }) => {
 	return (
-		<div 
-			className={`popup popup_type_${props.name}
-			${props.isOpen ? `popup_opened` : ""}`}
-			>
+		<div
+			className={`popup popup_type_${name} ${isOpen ? `popup_opened` : ""
+				}`}
+		>
 			<div className="popup__container">
 				<button
 					aria-label="Закрыть"
 					type="button"
 					className="popup__close-button"
-					onClick={props.onClose}
+					onClick={onClose}
 				/>
 				<h2 className="popup__title">
-					{props.title}
+					{title}
 				</h2>
 				<form
-					name={props.name}
-					className={`popup__form popup__form_type_${props.form}`}
+					name={name}
+					className={`popup__form popup__form_type_${form}`}
+					onSubmit={onSubmit}
 				>
-					{props.children}
+					{children}
 					<button
 						type="submit"
 						className="popup__submit-button"
 					>
-						{props.buttonText}
+						{buttonText}
 					</button>
 				</form>
 			</div>

@@ -1,23 +1,23 @@
-export const ImagePopup = (props) => {
+export const ImagePopup = ({ card, isOpen, onClose }) => {
 	return (
 		<div
-		className={`popup popup_type_image
-		${props.isOpen ? "popup_opened" : ""}`}
+			className={`popup popup_type_image
+		${isOpen ? "popup_opened" : ""}`}
 		>
 			<figure className="popup__container-image">
 				<button
-				aria-label="Закрыть"
-				type="button"
-				className="popup__close-button"
-				onClick={props.onClose}
+					aria-label="Закрыть"
+					type="button"
+					className="popup__close-button"
+					onClick={onClose}
 				></button>
 				<img
-				src={props.card.link}
-				alt={props.card.name}
-				className="popup__img"
+					src={card.link}
+					alt={card.name}
+					className="popup__img"
 				/>
 				<figcaption className="popup__caption">
-					{props.card.name}
+					{card.name}
 				</figcaption>
 			</figure>
 		</div>
